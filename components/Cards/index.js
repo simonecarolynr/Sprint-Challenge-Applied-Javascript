@@ -21,20 +21,42 @@ const articleCards = document.querySelector('.cards-container');
 axios
 .get('https://lambda-times-backend.herokuapp.com/articles')
 .then ((response) => {
-    response.data.articles.forEach((topic) => {
-        topic.forEach((arrItem) => {
-            articleCards.appendChild(articleCreator(arrItem))
-        }); 
-    })
-})
+    console.log(response.data);
+    let articles = response.data.articles;
+    for (let topic in articles){
+        let topicArticles = articles[topic];
+        topicArticles.forEach((article) => {
+            articleCards.appendChild(articleCreator(article))
+        })
+    }
 
+})
+/* .then((response) => {
+    articleCards.appendChild(articleCreator(response.data.articles.bootstrap))
+    return articleCards;
+})
+.then((response) => {
+    articleCards.appendChild(articleCreator(response.data.articles.technology))
+    return articleCards;
+})
+.then((response) => {
+    articleCards.appendChild(articleCreator(response.data.articles.jquery))
+    return articleCards;
+})
+.then((response) => {
+    articleCards.appendChild(articleCreator(response.data.articles.node))
+    return articleCards;
+}) */
 .catch((err) => {
     console.log(err);
 });
 
 
 
+
+
 function articleCreator(articleTopic) {
+    //creating elements
     const articleCard = document.createElement('div');
     const articleHeadline = document.createElement('div');
     const articleAuthor = document.createElement('div');
@@ -42,22 +64,32 @@ function articleCreator(articleTopic) {
     const img = document.createElement('img');
     const articleAuthorName = document.createElement('span');
 
+    //adding classList
     articleCard.classList.add('card');
     articleHeadline.classList.add('headline');
     articleAuthor.classList.add('author');
     authorImgContainer.classList.add('img-container');
 
-    img.src = articleTopic.authorImg;
+    //setting attribute of author profile by fetching data within parameter
+    img.src = articleTopic.authorPhoto;
 
+    //setting textContent of headline and author name by fetching data within parameter
     articleHeadline.textContent = articleTopic.headline;
     articleAuthorName.textContent = `By: ${articleTopic.authorName}`;
 
+    //appending elements to their containers
     articleCard.appendChild(articleHeadline);
     articleCard.appendChild(articleAuthor);
     articleAuthor.appendChild(authorImgContainer);
-    authorImgContainer.appendChild(authorImg);
+    authorImgContainer.appendChild(img);
     articleAuthor.appendChild(articleAuthorName);
+
+    //looping through arrays with an array, here's a recursion?
+   /*  articleTopic.data.articles.forEach((topic) => {
+        topic.forEach((arrItem) => {
+            return articleCreator(arrItem);
+        }) 
+    }); */
 
     return articleCard;
 };
-
