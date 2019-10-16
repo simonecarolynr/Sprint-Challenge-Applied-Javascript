@@ -29,10 +29,10 @@ Demonstrate your understanding of this week's concepts by answering the followin
 Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your project manager
 
 1. What is the DOM?
-The DOM is an interface that allows developers to manipulate and add code on a website. While it is not pure HTML, script, or styling, it works with all of these to design and implement powerful websites.
+The DOM is an interface that allows developers to manipulate and add code on a website. It allows you to work with HTML CSS and javascript to design and implement powerful websites.
 
 2. What is an event?
-An event is something that happens, such as a key being pressed, a mouse moving/clicking, a window changing size; essentially any input into the computer can in some way be an event.
+An event is something that happens, such as a key being pressed, scrolling through a page, a button being clicked, etc. Any input into the computer can be an event.
 
 3. What is an event listener?
 An event listener is a function that 'listens' or watches for an event to occur, and then executes a function.
